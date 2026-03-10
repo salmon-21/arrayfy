@@ -1560,15 +1560,16 @@ let PixelFormat = /* @__PURE__ */ function(PixelFormat$1) {
 	PixelFormat$1[PixelFormat$1["RGB888"] = 1] = "RGB888";
 	PixelFormat$1[PixelFormat$1["RGB666"] = 2] = "RGB666";
 	PixelFormat$1[PixelFormat$1["RGB565"] = 3] = "RGB565";
-	PixelFormat$1[PixelFormat$1["RGB444"] = 4] = "RGB444";
-	PixelFormat$1[PixelFormat$1["RGB332"] = 5] = "RGB332";
-	PixelFormat$1[PixelFormat$1["RGB111"] = 6] = "RGB111";
-	PixelFormat$1[PixelFormat$1["GRAY4"] = 7] = "GRAY4";
-	PixelFormat$1[PixelFormat$1["GRAY2"] = 8] = "GRAY2";
-	PixelFormat$1[PixelFormat$1["BW"] = 9] = "BW";
-	PixelFormat$1[PixelFormat$1["I2_RGB888"] = 10] = "I2_RGB888";
-	PixelFormat$1[PixelFormat$1["I4_RGB888"] = 11] = "I4_RGB888";
-	PixelFormat$1[PixelFormat$1["I6_RGB888"] = 12] = "I6_RGB888";
+	PixelFormat$1[PixelFormat$1["RGBA4444"] = 4] = "RGBA4444";
+	PixelFormat$1[PixelFormat$1["RGB444"] = 5] = "RGB444";
+	PixelFormat$1[PixelFormat$1["RGB332"] = 6] = "RGB332";
+	PixelFormat$1[PixelFormat$1["RGB111"] = 7] = "RGB111";
+	PixelFormat$1[PixelFormat$1["GRAY4"] = 8] = "GRAY4";
+	PixelFormat$1[PixelFormat$1["GRAY2"] = 9] = "GRAY2";
+	PixelFormat$1[PixelFormat$1["BW"] = 10] = "BW";
+	PixelFormat$1[PixelFormat$1["I2_RGB888"] = 11] = "I2_RGB888";
+	PixelFormat$1[PixelFormat$1["I4_RGB888"] = 12] = "I4_RGB888";
+	PixelFormat$1[PixelFormat$1["I6_RGB888"] = 13] = "I6_RGB888";
 	return PixelFormat$1;
 }({});
 let ChannelOrder = /* @__PURE__ */ function(ChannelOrder$1) {
@@ -1594,6 +1595,15 @@ var PixelFormatInfo = class {
 					8
 				];
 				this.alphaBits = 8;
+				break;
+			case PixelFormat.RGBA4444:
+				this.colorSpace = ColorSpace.RGB;
+				this.colorBits = [
+					4,
+					4,
+					4
+				];
+				this.alphaBits = 4;
 				break;
 			case PixelFormat.RGB888:
 				this.colorSpace = ColorSpace.RGB;
@@ -1967,6 +1977,17 @@ const rgb444_be = (function() {
 	p.alignBoundary = AlignBoundary.BYTE_3;
 	return p;
 })();
+const argb4444_le = (function() {
+	let p = { ...defaultConfig };
+	p.label = "ARGB4444-LE";
+	p.description = "アルファチャンネル付きの RGB444 形式。";
+	p.format = PixelFormat.RGBA4444;
+	p.packUnit = PackUnit.ALIGNMENT;
+	p.bigEndian = false;
+	p.channelOrder = ChannelOrder.ARGB;
+	p.alignBoundary = AlignBoundary.BYTE_2;
+	return p;
+})();
 const rgb332 = (function() {
 	let p = { ...defaultConfig };
 	p.label = "RGB332";
@@ -2139,6 +2160,7 @@ const presets = {
 	rgb666_be_ra,
 	rgb666_be_la,
 	rgb565_be,
+	argb4444_le,
 	rgb444_be,
 	rgb332,
 	rgb111_ra,
@@ -4246,6 +4268,10 @@ const pixelFormatBox = makeSelectBox([
 	{
 		value: PixelFormat.RGBA8888,
 		label: "RGBA8888"
+	},
+	{
+		value: PixelFormat.RGBA4444,
+		label: "RGBA4444"
 	},
 	{
 		value: PixelFormat.RGB888,

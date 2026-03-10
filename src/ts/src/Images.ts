@@ -11,11 +11,11 @@ export const enum ColorSpace {
 
 export const enum PixelFormat {
   RGBA8888,
-  // RGBA4444,
   RGB888,
   RGB666,
   RGB565,
   // RGB555,
+  RGBA4444,
   RGB444,
   RGB332,
   RGB111,
@@ -47,11 +47,11 @@ export class PixelFormatInfo {
         this.colorBits = [8, 8, 8];
         this.alphaBits = 8;
         break;
-      // case PixelFormat.RGBA4444:
-      //   this.colorSpace = ColorSpace.RGB;
-      //   this.colorBits = [4, 4, 4];
-      //   this.alphaBits = 4;
-      //   break;
+      case PixelFormat.RGBA4444:
+        this.colorSpace = ColorSpace.RGB;
+        this.colorBits = [4, 4, 4];
+        this.alphaBits = 4;
+        break;
       case PixelFormat.RGB888:
         this.colorSpace = ColorSpace.RGB;
         this.colorBits = [8, 8, 8];

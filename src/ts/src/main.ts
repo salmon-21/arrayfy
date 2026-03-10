@@ -403,7 +403,7 @@ const paletteSection = Ui.makeSection([
 const pixelFormatBox = Ui.makeSelectBox(
     [
       {value: PixelFormat.RGBA8888, label: 'RGBA8888'},
-      //{value: PixelFormat.RGBA4444, label: 'RGBA4444'},
+      {value: PixelFormat.RGBA4444, label: 'RGBA4444'},
       {value: PixelFormat.RGB888, label: 'RGB888'},
       {value: PixelFormat.RGB666, label: 'RGB666'},
       {value: PixelFormat.RGB565, label: 'RGB565'},

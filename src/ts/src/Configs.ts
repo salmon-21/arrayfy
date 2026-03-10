@@ -128,6 +128,18 @@ const rgb444_be = (function(): Config {
   return p;
 })();
 
+const argb4444_le = (function(): Config {
+  let p = {...defaultConfig};
+  p.label = 'ARGB4444-LE';
+  p.description = 'アルファチャンネル付きの RGB444 形式。';
+  p.format = Images.PixelFormat.RGBA4444;
+  p.packUnit = Encoder.PackUnit.ALIGNMENT;
+  p.bigEndian = false;
+  p.channelOrder = Images.ChannelOrder.ARGB;
+  p.alignBoundary = Encoder.AlignBoundary.BYTE_2;
+  return p;
+})();
+
 const rgb332 = (function(): Config {
   let p = {...defaultConfig};
   p.label = 'RGB332';
@@ -297,6 +309,7 @@ export const presets: Record<string, Config> = {
   rgb666_be_ra,
   rgb666_be_la,
   rgb565_be,
+  argb4444_le,
   rgb444_be,
   rgb332,
   rgb111_ra,
